@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jasig.sched-assist</groupId>
-	<artifactId>sched-assist</artifactId>
-	<version>1.2.0-SNAPSHOT</version>
+	<groupId>org.apereo.bedework.sometime</groupId>
+	<artifactId>sometime</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Scheduling Assistant Parent</name>
-	<description>The root project definition for the Scheduling Assistant project.</description>
+	<name>Bedework Sometime Parent</name>
+	<description>The parent project for the Bedework Sometime project.</description>
 
 	<parent>
 		<groupId>org.jasig.parent</groupId>
@@ -29,16 +29,16 @@
 		<url>https://issues.jasig.org/browse/SA</url>
 	</issueManagement>
 	<scm>
-		<connection>scm:git:git@github.com:Jasig/sched-assist.git</connection>
-		<developerConnection>scm:git:git@github.com:Jasig/sched-assist.git</developerConnection>
-		<url>https://github.com/Jasig/sched-assist</url>
+		<connection>scm:git:git@github.com:nblair/sometime.git</connection>
+		<developerConnection>scm:git:git@github.com:nblair/sometime.git</developerConnection>
+		<url>https://github.com/nblair/sometime</url>
 	</scm>
 
 	<developers>
 		<developer>
-			<email>nblair@doit.wisc.edu</email>
+			<email>nicholas.blair@gmail.com</email>
 			<name>Nicholas Blair</name>
-			<organization>University of Wisconsin-Madison</organization>
+			<organization>Apereo</organization>
 		</developer>
 	</developers>
 
