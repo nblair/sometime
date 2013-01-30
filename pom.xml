@@ -14,14 +14,14 @@
 	</parent>
 
 	<modules>
-		<module>sched-assist-api</module>
-		<module>sched-assist-mock</module>
-		<module>sched-assist-spi</module>
-		<module>sched-assist-spi-caldav</module>
-		<module>sched-assist-spi-relationships</module>
-		<module>sched-assist-war</module>
-		<module>sched-assist-portlet</module>
-		<module>sched-assist-spi-caldav-integrationtest</module>
+		<module>sometime-api</module>
+		<module>sometime-mock</module>
+		<module>sometime-portlet</module>
+		<module>sometime-spi</module>
+		<module>sometime-spi-caldav</module>
+		<module>sometime-spi-caldav-integrationtest</module>
+		<module>sometime-spi-relationships</module>
+		<module>sometime-war</module>
 	</modules>
 
 	<issueManagement>

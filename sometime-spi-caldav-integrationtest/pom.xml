@@ -1,14 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>sched-assist</artifactId>
-		<groupId>org.jasig.sched-assist</groupId>
-		<version>1.2.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<artifactId>sometime</artifactId>
+		<groupId>org.apereo.bedework.sometime</groupId>
+		<version>2.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>sched-assist-spi-caldav-integrationtest</artifactId>
-	<name>Scheduling Assistant SPI: CalDAV Integration Test</name>
-	<description>Module including an integration test for verifying Scheduling Assistant compatibility with a remote CalDAV server.</description>
+	<artifactId>sometime-spi-caldav-integrationtest</artifactId>
+	<name>Sometime SPI: CalDAV Integration Test</name>
+	<description>Module including an integration test for verifying Sometime compatibility with a remote CalDAV server.</description>
 
 	<properties>
 		<spring.framework.version>3.0.5.RELEASE</spring.framework.version>
@@ -16,13 +15,13 @@
 	
 	<dependencies>
 		<dependency>
-			<artifactId>sched-assist-mock</artifactId>
+			<artifactId>sometime-mock</artifactId>
 			<groupId>${project.groupId}</groupId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>sched-assist-spi-caldav</artifactId>
+			<artifactId>sometime-spi-caldav</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

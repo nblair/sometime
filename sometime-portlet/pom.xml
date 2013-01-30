@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>sched-assist</artifactId>
-		<groupId>org.jasig.sched-assist</groupId>
-		<version>1.2.0-SNAPSHOT</version>
+		<artifactId>sometime</artifactId>
+		<groupId>org.apereo.bedework.sometime</groupId>
+		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>sched-assist-portlet</artifactId>
+	<artifactId>sometime-portlet</artifactId>
 	<packaging>war</packaging>
-	<name>Scheduling Assistant Portlet</name>
-	<description>Scheduling Assistant Portlet.</description>
+	<name>Sometime Portlet</name>
+	<description>JSR 168 Portlet for interacting with your Sometime install.</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>sched-assist-api</artifactId>
+			<artifactId>sometime-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -136,7 +136,7 @@
 		<!-- END runtime dependencies -->
 	</dependencies>
 	<build>
-		<finalName>scheduling-assistant-portlet</finalName>
+		<finalName>sometime-portlet</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

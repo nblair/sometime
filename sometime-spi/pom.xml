@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>sched-assist</artifactId>
-		<groupId>org.jasig.sched-assist</groupId>
-		<version>1.2.0-SNAPSHOT</version>
+		<artifactId>sometime</artifactId>
+		<groupId>org.apereo.bedework.sometime</groupId>
+		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>sched-assist-spi</artifactId>
-	<name>Scheduling Assistant SPI: Common</name>
-	<description>Scheduling Assistant Common Service Provider implementations.</description>
+	<artifactId>sometime-spi</artifactId>
+	<name>Sometime SPI: Common</name>
+	<description>Sometime Common Service Provider implementations.</description>
 	
 	<properties>
 		<ehcache.version>2.1.0</ehcache.version>
@@ -23,7 +23,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>sched-assist-api</artifactId>
+			<artifactId>sometime-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
@@ -117,7 +117,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>sched-assist-mock</artifactId>
+			<artifactId>sometime-mock</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
