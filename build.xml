@@ -19,7 +19,7 @@
 
 -->
 
-<project name="sched-assist" basedir="." xmlns:artifact="urn:maven-artifact-ant">
+<project name="sometime" basedir="." xmlns:artifact="urn:maven-artifact-ant">
 
 	<fail message="build.properties does not exist, please copy build-SAMPLE.properties as build.properties and modify for your environment">
 		<condition>
@@ -43,17 +43,18 @@
 	<property file="${basedir}/build.properties" />
 
 	<artifact:dependencies pathid="hsql.classpath">
-		<dependency groupId="hsqldb" artifactId="hsqldb" version="1.8.0.10" />
+		<dependency groupId="org.hsqldb" artifactId="hsqldb" version="2.2.9" />
+		<dependency groupId="org.hsqldb" artifactId="sqltool" version="2.2.9" />
 	</artifact:dependencies>
 
 	<artifact:dependencies pathid="parent.maven.classpath">
 		<pom file="${basedir}/pom.xml" />
 	</artifact:dependencies>
 	<artifact:dependencies pathid="spi.maven.classpath">
-		<pom file="${basedir}/sched-assist-spi/pom.xml" />
+		<pom file="${basedir}/sometime-spi/pom.xml" />
 	</artifact:dependencies>
 
-	<target name="hsql" description="Start a HSQLDB instance consistent with the default RDBMS requirements of Available">
+	<target name="hsql" description="Start a HSQLDB instance consistent with the default RDBMS requirements of Bedework Sometime">
 		<property name="spawn" value="false" />
 
 		<condition property="failonerror" value="false">
@@ -65,14 +66,16 @@
 
 		<echo message="Starting HSQL" />
 		<echo message="Using: ${hsql.data.directory}" />
-		<java fork="true" spawn="${spawn}" maxmemory="96M" classname="org.hsqldb.Server" failonerror="${failonerror}">
-			<classpath refid="hsql.classpath" />
+		<java fork="true" spawn="${spawn}" maxmemory="96M" classname="org.hsqldb.server.Server" failonerror="${failonerror}">
+			<classpath refid="hsql.classpath" />	
+			<arg value="--database.0" />
+			<arg value="${hsql.data.directory}/schedassistdb;hsqldb.tx=mvcc" />
+			<arg value="--dbname.0" />
+			<arg value="schedassistdb" />
+			<arg value="--address" />
+			<arg value="localhost" />
 			<arg value="-port" />
 			<arg value="${port}" />
-			<arg value="-database.0" />
-			<arg value="${hsql.data.directory}/schedassistdb" />
-			<arg value="-dbname.0" />
-			<arg value="schedassistdb" />
 		</java>
 	</target>
 
@@ -87,7 +90,7 @@
 		<echo message="Stopping HSQL" />
 		<trycatch reference="hsql-shutdown.exceptionId">
 			<try>
-				<java fork="true" dir="." classname="org.hsqldb.util.SqlTool" timeout="5000" errorproperty="hsql-shutdown.err.out" failonerror="true">
+				<java fork="true" dir="." classname="org.hsqldb.cmdline.SqlTool" timeout="5000" errorproperty="hsql-shutdown.err.out" failonerror="true">
 					<classpath refid="hsql.classpath" />
 					<arg value="--rcFile" />
 					<arg value="${basedir}/bootstrap/hsqldb.sqltool.rc" />
@@ -118,13 +121,13 @@
 			<jvmarg value="-Dorg.jasig.schedassist.impl.InitializeSchedulingAssistantDatabase.CONFIG=${database.config}" />
 			<classpath>
 				<path refid="spi.maven.classpath" />
-				<fileset dir="${basedir}/sched-assist-spi/target">
+				<fileset dir="${basedir}/sometime-spi/target">
 					<include name="*.jar" />
 				</fileset>
 				<pathelement location="${basedir}/bootstrap" />
-				<pathelement location="${basedir}/sched-assist-spi/src/main/resources" />
-				<pathelement location="${basedir}/sched-assist-spi/src/main/sql" />
-				<pathelement location="${basedir}/sched-assist-spi/src/test/resources" />
+				<pathelement location="${basedir}/sometime-spi/src/main/resources" />
+				<pathelement location="${basedir}/sometime-spi/src/main/sql" />
+				<pathelement location="${basedir}/sometime-spi/src/test/resources" />
 			</classpath>
 		</java>
 	</target>
@@ -143,13 +146,13 @@
 			<jvmarg value="-Dorg.jasig.schedassist.impl.InitializeSchedulingAssistantDatabase.CONFIG=${database.config}" />
 			<classpath>
 				<path refid="spi.maven.classpath" />
-				<fileset dir="${basedir}/sched-assist-spi/target">
+				<fileset dir="${basedir}/sometime-spi/target">
 					<include name="*.jar" />
 				</fileset>
 				<pathelement location="${basedir}/bootstrap" />
-				<pathelement location="${basedir}/sched-assist-spi/src/main/resources" />
-				<pathelement location="${basedir}/sched-assist-spi/src/main/sql" />
-				<pathelement location="${basedir}/sched-assist-spi/src/test/resources" />
+				<pathelement location="${basedir}/sometime-spi/src/main/resources" />
+				<pathelement location="${basedir}/sometime-spi/src/main/sql" />
+				<pathelement location="${basedir}/sometime-spi/src/test/resources" />
 			</classpath>
 		</java>
 	</target>
@@ -164,7 +167,7 @@
 	<!-- this target copies the war file you built (using mvn package) to the
 			tomcat installation you defined in build.properties -->
 	<target name="deploy-war" description="Copies the Scheduling Assistant war to the Tomcat webapps directory">
-		<copy file="${basedir}/sched-assist-war/target/scheduling-assistant.war" todir="${tomcat.home}/webapps" />
+		<copy file="${basedir}/sometime-war/target/sometime.war" todir="${tomcat.home}/webapps" />
 	</target>
 
 	<target name="redeploy-war" description="Shortcut to invoke 'clean-webapp' and 'deploy-war' targets">
@@ -173,7 +176,7 @@
 	</target>
 
 	<target name="hot-deploy-log4j.properties">
-		<copy file="${basedir}/sched-assist-war/src/main/resources/log4j.properties" todir="${tomcat.home}/webapps/scheduling-assistant/WEB-INF/classes/">
+		<copy file="${basedir}/sometime-war/src/main/resources/log4j.properties" todir="${tomcat.home}/webapps/scheduling-assistant/WEB-INF/classes/">
 		</copy>
 	</target>
 
@@ -205,10 +208,10 @@
 			<env key="LD_LIBRARY_PATH" value="${ld_library_path}" />
 			<classpath>
 				<path refid="mavenproject.classpath" />
-				<fileset dir="sched-assist-api/target">
+				<fileset dir="sometime-api/target">
 					<include name="*.jar" />
 				</fileset>
-				<fileset dir="sched-assist-spi/target">
+				<fileset dir="sometime-spi/target">
 					<include name="*.jar" />
 				</fileset>
 				<pathelement location="bootstrap" />
@@ -216,5 +219,4 @@
 		</java>
 	</target>
 	-->
-
 </project>
